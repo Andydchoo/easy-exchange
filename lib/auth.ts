@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
 export type AuthUser = {
@@ -8,6 +9,10 @@ export type AuthUser = {
 };
 
 export const getCurrentUser = cache(async (): Promise<AuthUser | null> => {
+  // Session checks compare token expiry with the current time, so they must
+  // run at request time rather than during prerendering or prefetching.
+  await connection();
+
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
 
