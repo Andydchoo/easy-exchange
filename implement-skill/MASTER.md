@@ -225,4 +225,28 @@ Keep completion responses concise:
 
 If a requested change requires an architectural decision not defined here, ask before inventing one.
 
-Do not implement anything yet. Treat this document as the project's source of truth and wait for a scoped task.
+## Working Method
+
+Work on one scoped task at a time.
+
+Before editing:
+
+- inspect only files relevant to the current task
+- preserve existing working implementation
+- check git status and current project state before assuming something is missing
+
+During implementation:
+
+- make the smallest complete change
+- avoid unrelated refactors
+- avoid speculative abstractions
+- do not implement future features
+- do not add dependencies unless needed
+
+After implementation:
+
+- run the narrowest useful checks
+- fix errors caused by the change
+- report concisely what changed and any manual action required
+
+Do not reinterpret or expand the product requirements unless explicitly asked.
