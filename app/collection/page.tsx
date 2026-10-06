@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { logout } from "@/app/auth/actions";
 import { CDCard, type CDCardData } from "@/components/CDCard";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
@@ -20,21 +19,13 @@ async function CollectionContent() {
 
   return (
     <>
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm">Signed in as {user.email}</p>
-        <div className="flex items-center gap-2">
-          <Link
-            href="/collection/new"
-            className="rounded bg-black px-3 py-2 text-white"
-          >
-            Add CD
-          </Link>
-          <form action={logout}>
-            <button type="submit" className="rounded border px-3 py-2">
-              Log out
-            </button>
-          </form>
-        </div>
+      <div className="mb-6 flex items-center justify-end">
+        <Link
+          href="/collection/new"
+          className="rounded bg-black px-3 py-2 text-white"
+        >
+          Add CD
+        </Link>
       </div>
 
       {error ? (
