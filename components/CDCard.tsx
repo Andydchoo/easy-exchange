@@ -9,6 +9,7 @@ export type CDCardData = {
   genre: string;
   condition: "MINT" | "VERY_GOOD" | "GOOD" | "FAIR";
   is_available: boolean;
+  ownerDisplayName?: string;
 };
 
 const CONDITION_LABELS: Record<CDCardData["condition"], string> = {
@@ -43,6 +44,11 @@ export function CDCard({ cd }: { cd: CDCardData }) {
         >
           {cd.is_available ? "Available" : "Unavailable"}
         </span>
+        {cd.ownerDisplayName && (
+          <span className="text-sm text-gray-500">
+            Listed by {cd.ownerDisplayName}
+          </span>
+        )}
       </div>
     </Link>
   );
